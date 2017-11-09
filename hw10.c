@@ -2,11 +2,13 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <signal.h>
+#include <fcntl.h>
 
 static void sighandler(int signo){
   if(signo == SIGINT){
-    //placeholder
-    printf("received SIGINT\n");
+    int fd = open("msgs", O_WRONLY | O_APPEND | O_CREAT, 0644);
+    write(fd, "received SIGINT. \n", sizeof("received SIGINT. \n"));
+    close(fd);
     exit(1);
   }
   if(signo == SIGUSR1){
