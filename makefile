@@ -4,4 +4,3 @@ run: all
 	./a.out
 clean: 
 	rm msgs
-	rm *~
